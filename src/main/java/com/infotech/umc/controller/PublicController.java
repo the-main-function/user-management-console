@@ -16,4 +16,9 @@ public class PublicController {
 		model.addAttribute("user", new User());
 		return "register-user";
 	}
+	
+	@GetMapping("/login")
+	public String displayLoginForm() {
+		return "login";
+	}
 }

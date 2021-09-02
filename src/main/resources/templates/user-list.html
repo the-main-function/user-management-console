@@ -1,10 +1,18 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>USER LIST</title>
 </head>
 <body>
-	USER LIST
+	<h3 align="center">USER LIST	</h3>
+	<table align="center">
+		<tr th:each="user:${userList}">
+			<td th:text="${user.name}">
+			<td th:text="${user.email}">
+			<td>EDIT</td>
+			<td>DELETE</td>
+		</tr>
+	</table>
 </body>
 </html>

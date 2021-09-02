@@ -26,7 +26,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 			.antMatchers("/users/**").hasRole("USER")
 			.anyRequest().permitAll()
 			.and()
-			.formLogin();
+			.formLogin()
+			.loginPage("/public/login")
+			.loginProcessingUrl("/public/doLogin");
+		
+		http.csrf().disable();
 	}
 
 	@Override
