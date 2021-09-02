@@ -42,6 +42,13 @@ public class UserController {
 		return "edit-form";
 	}
 	
+	@GetMapping("/delete-user/{id}")
+	public String deleteUser(@PathVariable("id")int userId, Model model) {
+		userService.deleteUser(userId);
+		model.addAttribute("message","User deleted successfully");
+		return "redirect:/users/list";
+	}
+	
 	
 	@PostMapping("/edit-user")
 	public String updateUser(@ModelAttribute User user, RedirectAttributes redirectAttributes) {
