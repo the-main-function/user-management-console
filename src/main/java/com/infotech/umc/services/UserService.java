@@ -29,4 +29,14 @@ public class UserService {
 	public void deleteUser(int id) {
 		userRepository.deleteById(id);
 	}
+	
+	public User updateUser(User user) {
+		User userToUpdate = getUser(user.getUserId());
+		userToUpdate.setName(user.getName());
+		userToUpdate.setEmail(user.getEmail());
+		if(!user.getPassword().isEmpty()) {
+			userToUpdate.setPassword(user.getPassword());
+		}
+		return addUser(userToUpdate);
+	}
 }

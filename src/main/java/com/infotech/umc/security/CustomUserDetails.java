@@ -1,6 +1,10 @@
 package com.infotech.umc.security;
 
+import java.text.DateFormat;
+import java.time.LocalDate;
+import java.util.Calendar;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 
@@ -16,6 +20,8 @@ import com.infotech.umc.entities.User;
 public class CustomUserDetails implements UserDetails {
 
 	private User user;
+	private LocalDate accountCreationDate = LocalDate.of(2021, 9, 2); 
+	
 	
 	public CustomUserDetails() {
 	
@@ -44,6 +50,8 @@ public class CustomUserDetails implements UserDetails {
 
 	@Override
 	public boolean isAccountNonExpired() {
+		long currentTimeMillis = System.currentTimeMillis();
+		
 		return true;
 	}
 
