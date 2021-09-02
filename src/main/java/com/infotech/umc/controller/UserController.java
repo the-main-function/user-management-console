@@ -31,8 +31,14 @@ public class UserController {
 	
 	@PostMapping("/add-user")
 	public String registerUser(@ModelAttribute User user, RedirectAttributes redirectAttributes) {
-		userService.addUser(user);
-		return "redirect:/users/list";
+		if(!isEmailValid(user.getEmail())) {
+			redirectAttributes.addFlashAttribute("message", "email already exists");
+			return "redirect:/public/register";
+		}
+		else {
+			userService.addUser(user);
+			return "redirect:/public/login";
+		}
 	}
 	
 	@GetMapping("/edit-user-form/{id}")
@@ -55,8 +61,21 @@ public class UserController {
 		User userToUpdate = userService.getUser(user.getUserId());
 		userToUpdate.setName(user.getName());
 		userToUpdate.setEmail(user.getEmail());
-		userToUpdate.setPassword(user.getPassword());
+		if(!user.getPassword().isEmpty()) {
+			userToUpdate.setPassword(user.getPassword());
+		}
 		userService.addUser(userToUpdate);
 		return "redirect:/users/list";
+	}
+	
+	public boolean isEmailValid(String email) {
+		boolean present = userService.getUsers().stream().filter(x->x.getEmail().equals(email)).findFirst().isPresent();
+		System.out.println(present);
+		if(present) {
+			return false;
+		}
+		else {
+			return true;
+		}
 	}
 }

@@ -1,15 +1,41 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="ISO-8859-1">
-<title>REGISTER</title>
+	<meta charset="ISO-8859-1">
+	<title>REGISTER</title>
+	<link rel="stylesheet"  href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
-<body>
-	<form th:action="@{/users/add-user}" th:object="${user}" method="POST">
-		<input th:field="*{email}">
-		<input th:field="*{name}">
-		<input th:field="*{password}">
-		<input type="submit" value="REGISTER">
-	</form>
-</body>
+	<body>
+		<div class="container-fluid" style="width:50%">
+			<h1 align="center">USER MANAGEMENT CONSOLE</h1>
+		<br>
+		<h2 align="center">USER LIST</h2>
+		<br>
+		<form th:action="@{/users/add-user}" th:object="${user}" method="POST">
+			<div class="border border-secondary rounded p-2">
+	
+				<div class="form-group m-2">
+					<label class="">Enter Name</label> 
+					<input type="text" class="form-control" maxlength=20 th:field="*{name}" required>
+				</div>
+	
+				<div class="form-group m-2">
+					<label class="">Enter Email</label> 
+					<input type="email" class="form-control" maxlength=128 th:field="*{email}" required>
+				</div>
+	
+				<div class="form-group m-2">
+					<label class="">Enter Password</label> 
+					<input type="password" th:field="*{password}" class="form-control" maxlength=20 required>
+				</div>
+	
+				<div class="text-center">
+					<input type="submit" value="REGISTER" class="btn btn-primary">
+					<input type="reset" value="RESET VALUES" class="btn btn-warning">
+				</div>
+			</div>
+			</form>
+		</div>
+		
+	</body>
 </html>

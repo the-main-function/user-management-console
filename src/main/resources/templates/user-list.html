@@ -1,18 +1,30 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="ISO-8859-1">
-<title>USER LIST</title>
+	<meta charset="ISO-8859-1">
+	<link rel="stylesheet"  href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<title>USER LIST</title>
 </head>
 <body>
-	<h3 align="center">USER LIST	</h3>
-	<table align="center">
-		<tr th:each="user:${userList}">
-			<td th:text="${user.name}">
-			<td th:text="${user.email}">
-			<td><a th:href="@{'/users/edit-user-form/'+${user.userId}}">EDIT</a></td>
-			<td><a th:href="@{'/users/delete-user/'+${user.userId}}">DELETE</a></td>
-		</tr>
-	</table>
+	<div class="container-fluid">
+		<a th:href="@{/user/logout}"><button type="button" class="btn btn-danger m-2" style="float:right">LOGOUT</button></a>	
+		<h1 align="center">USER MANAGEMENT CONSOLE</h1>
+		<br>
+		<h2 align="center">USER LIST</h2>
+		<br>
+		<table align="center" class="table table-responsive-xl table-bordered table-striped">
+			<tr class="text-center">
+				<th>Name</th>
+				<th>Email</th>
+				<th colspan="2">Actions</th>
+			</tr>
+			<tr class="text-center" th:each="user:${userList}">
+				<td th:text="${user.name}">
+				<td th:text="${user.email}">
+				<td><a th:href="@{'/users/edit-user-form/'+${user.userId}}">EDIT</a></td>
+				<td><a th:href="@{'/users/delete-user/'+${user.userId}}">DELETE</a></td>
+			</tr>
+		</table>
+	</div>
 </body>
 </html>
