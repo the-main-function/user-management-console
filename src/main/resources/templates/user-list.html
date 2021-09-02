@@ -10,7 +10,7 @@
 		<tr th:each="user:${userList}">
 			<td th:text="${user.name}">
 			<td th:text="${user.email}">
-			<td>EDIT</td>
+			<td><a th:href="@{'/users/edit-user-form/'+${user.userId}}">EDIT</a></td>
 			<td>DELETE</td>
 		</tr>
 	</table>
